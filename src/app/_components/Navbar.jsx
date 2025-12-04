@@ -1,9 +1,10 @@
 import React from 'react'
 import Link from 'next/link'
 import LogOutBtn from './LogOutBtn';
+import { getSession } from '../_lib/session';
 
-function Navbar() {
-    const session = false;
+async function Navbar() {
+    const session = await getSession();
     return (
         <nav className='bg-white shadow-sm font-bold'>
             <div className="container mx-auto p-4 flex justify-between items-center">
