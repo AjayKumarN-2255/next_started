@@ -2,7 +2,7 @@
 import React, { useActionState, useEffect } from 'react'
 import { useRouter } from 'next/navigation';
 
-function ContactForm({ action }) {
+function ContactForm({ action, contact }) {
     const [state, formAction] = useActionState(action, null);
     const router = useRouter();
     useEffect(() => {
@@ -13,12 +13,14 @@ function ContactForm({ action }) {
     return (
         <form className="space-y-4 max-w-sm mx-auto p-6"
             action={formAction}>
+            <input type='hidden' name='id' value={contact?.id} />
             {/* name */}
             <div className="grid grid-cols-4 items-center gap-2">
                 <label className="font-medium text-gray-700">Name:</label>
                 <input
                     type="name"
                     name="name"
+                    defaultValue={contact?.name}
                     className={`col-span-3 w-full px-3 py-2 rounded-lg border border-gray-300 
                  focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent`}
                     placeholder="Enter your email"
@@ -31,6 +33,7 @@ function ContactForm({ action }) {
                 <input
                     type="email"
                     name="email"
+                    defaultValue={contact?.email}
                     className={`col-span-3 w-full px-3 py-2 rounded-lg border border-gray-300 
                  focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent`}
                     placeholder="Enter your password"
